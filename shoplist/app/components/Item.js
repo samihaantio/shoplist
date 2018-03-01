@@ -14,7 +14,6 @@ export default class Item extends Component {
   render() {
     return (
       <View key={this.props.keyval} style={styles.item}>
-        <Text style={styles.itemText}>{this.props.val.date}</Text>
         <Text style={styles.itemText}>{this.props.val.item}</Text>
 
         <TouchableOpacity onPress={this.props.deleteMethod} style={styles.itemDelete}>

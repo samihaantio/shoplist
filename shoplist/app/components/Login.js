@@ -19,6 +19,20 @@ export default class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      loading: true,
+    }
+  }
+
+  componentWillMount() {
+    this._loadInitialState().done();
+  }
+
+  _loadInitialState = async () => {
+
+    // Get username from AsyncStorage
+    //var value = await AsyncStorage.getItem('username');
+    if (AsyncStorage.getItem('username') !== null) {
+      this.props.navigation.navigate('Memberarea');
     }
   }
 
@@ -38,12 +52,13 @@ export default class Login extends Component {
     })
     .then((response) => response.json())
     .then((res) => {
+
       if (res.success === true ) {
         var userdata = res.userdata;
         //console.log(res.message);
         
         AsyncStorage.setItem('username', userdata.username);
-        this.props.navigation.navigate('Memberarea')
+        this.props.navigation.navigate('Memberarea');
 
       } else {
         alert(res.message);
@@ -59,22 +74,22 @@ export default class Login extends Component {
       <View style={styles.container}>
       <ImageBackground  source={require('../img/login_bg.jpg')} style={styles.backgroundImage}>
         <View style={styles.content}>
-          <Text style={styles.logo}>- ShoppingList -</Text>
+          <Text style={styles.logo}>Ostoslista</Text>
 
           <View style={styles.inputContainer}>
             <TextInput underlineColorAndroid='transparent' style={styles.input} 
             onChangeText={(username) => this.setState({username})}
             value={this.state.username}
-            placeholder='username'>
+            placeholder='Käyttäjätunnus'>
             </TextInput>
             <TextInput secureTextEntry={true} underlineColorAndroid='transparent' style={styles.input} 
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
-            placeholder='password'>
+            placeholder='salasana'>
             </TextInput>
-            <Text style={styles.noAccount}>No account? Register here!</Text>
+            <Text style={styles.noAccount}>Ei tunnusta? Luo tunnus!</Text>
             <TouchableOpacity onPress={this.login} style={styles.buttonContainer}>
-              <Text style={styles.buttonText}>LOGIN</Text>
+              <Text style={styles.buttonText}>KIRJAUDU</Text>
             </TouchableOpacity>
           </View>
 

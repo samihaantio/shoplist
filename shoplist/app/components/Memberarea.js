@@ -67,7 +67,7 @@ export default class Memberarea extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>SHOPLIST</Text>
+          <Text style={styles.headerText}>Ostoslista</Text>
         </View>
         <ScrollView style={styles.scrollContainer}>
           {items}
@@ -80,7 +80,7 @@ export default class Memberarea extends Component {
 
           <TextInput style={styles.textInput}
           onChangeText={(itemText) => this.setState({itemText})} value={this.state.itemText}
-            placeholder='> add item' placeholderTextColor='white' underlineColorAndroid='transparent'>
+            placeholder='> Lisää tuote' placeholderTextColor='white' underlineColorAndroid='transparent'>
           </TextInput>
         </View>
       </View>
@@ -196,6 +196,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     padding: 26,
   },
+  newButton: {
+    alignSelf: 'flex-end',
+  },
   scrollContainer: {
     flex: 1,
     marginBottom: 100,
@@ -215,8 +218,10 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'flex-end', 
     elevation: 8,
-    marginBottom: -45,
+    marginBottom: -65,
+    marginRight: 15,
     zIndex: 10,
   },
   addButtonText: {
